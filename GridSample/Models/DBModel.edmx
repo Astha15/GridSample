@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AlertsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AlertDetail">
+          <Key>
+            <PropertyRef Name="AlertGuid" />
+          </Key>
+          <Property Name="AlertGuid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AlertName" Type="nvarchar(max)" />
+          <Property Name="AlertDescription" Type="nvarchar(max)" />
+          <Property Name="Severity" Type="int" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="Category" Type="nchar" MaxLength="30" />
+          <Property Name="RaisedDateTime" Type="datetime" />
+          <Property Name="RepeatCount" Type="int" />
+          <Property Name="DWLastModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Alerts.dbo.ResolutionTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ResolutionTable">
+          <Key>
+            <PropertyRef Name="AlertGuid" />
+          </Key>
+          <Property Name="AlertGuid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResolutionState" Type="int" />
+          <Property Name="DWCreatedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="AlertsModelStoreContainer">
+          <EntitySet Name="AlertDetail" EntityType="Self.AlertDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResolutionTable" EntityType="Self.ResolutionTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ResolutionTable].[AlertGuid] AS [AlertGuid], 
+    [ResolutionTable].[ResolutionState] AS [ResolutionState], 
+    [ResolutionTable].[DWCreatedDateTime] AS [DWCreatedDateTime]
+    FROM [dbo].[ResolutionTable] AS [ResolutionTable]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlertsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AlertDetail">
+          <Key>
+            <PropertyRef Name="AlertGuid" />
+          </Key>
+          <Property Name="AlertGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AlertName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AlertDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Severity" Type="Int32" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="RaisedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="RepeatCount" Type="Int32" />
+          <Property Name="DWLastModifiedDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ResolutionTable">
+          <Key>
+            <PropertyRef Name="AlertGuid" />
+          </Key>
+          <Property Name="AlertGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResolutionState" Type="Int32" />
+          <Property Name="DWCreatedDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="AlertsEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AlertDetails" EntityType="Self.AlertDetail" />
+          <EntitySet Name="ResolutionTables" EntityType="Self.ResolutionTable" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlertsModelStoreContainer" CdmEntityContainer="AlertsEntities4">
+          <EntitySetMapping Name="AlertDetails">
+            <EntityTypeMapping TypeName="AlertsModel.AlertDetail">
+              <MappingFragment StoreEntitySet="AlertDetail">
+                <ScalarProperty Name="AlertGuid" ColumnName="AlertGuid" />
+                <ScalarProperty Name="AlertName" ColumnName="AlertName" />
+                <ScalarProperty Name="AlertDescription" ColumnName="AlertDescription" />
+                <ScalarProperty Name="Severity" ColumnName="Severity" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="RaisedDateTime" ColumnName="RaisedDateTime" />
+                <ScalarProperty Name="RepeatCount" ColumnName="RepeatCount" />
+                <ScalarProperty Name="DWLastModifiedDateTime" ColumnName="DWLastModifiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResolutionTables">
+            <EntityTypeMapping TypeName="AlertsModel.ResolutionTable">
+              <MappingFragment StoreEntitySet="ResolutionTable">
+                <ScalarProperty Name="AlertGuid" ColumnName="AlertGuid" />
+                <ScalarProperty Name="ResolutionState" ColumnName="ResolutionState" />
+                <ScalarProperty Name="DWCreatedDateTime" ColumnName="DWCreatedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

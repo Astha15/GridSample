@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "MyView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+} 
+@section scripts{
+    @Scripts.Render("~/js/app.js")
+    @Scripts.Render("~/js/GridController.js")
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">  
+<div ng-app="myGrid">
+    <div ng-controller="GridController">
+        {{severityValues(Alerts)}}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Alert</th>
+                    <th>Description</th>
+                    <th>
+                        <a href="#" ng-click="sortType = 'Severity'; sortReverse = !sortReverse">  Severity               
+                            <span ng-show="sortType == 'Severity'" class="fa fa-caret-down"></span>
+                        </a>          
+                        
+                        <select name="Severity" title="Severity" ng-options="value for value in severityValues(Alerts,'Severity')" ng-model="searchparam.Severity"></select>
+                    </th>
+                   
+                    <th>
+                        <a href="#" ng-click="sortType = 'Priority'; sortReverse = !sortReverse"> Priority</a>
+                    </th>
+                    <th>Category</th>
+                    <th>
+                        <a href="#" ng-click="sortType = 'Raised Date Time'; sortReverse = !sortReverse">   Raised Date Time</a> 
+                   </th>
+                   <th>Repeat Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="alert in Alerts| orderBy:sortType:sortReverse | filter : searchparam">
+                    <td>{{alert.AlertName}}</td>
+                    <td>{{alert.AlertDescription}}</td>
+                    <td>{{alert.Severity}}</td>
+                    <td>{{alert.Priority}}</td>
+                    <td>{{alert.Category}}</td>
+                    <td>{{alert.RaisedDateTime}}</td>
+                    <td>{{alert.RepeatCount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+    <!-- jQuery first, then Bootstrap JS. -->

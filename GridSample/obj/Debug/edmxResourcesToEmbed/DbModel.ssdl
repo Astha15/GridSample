@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlertsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'Alerts.dbo.AlertsTable' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="AlertsTable">
+          <Property Name="AlertGuid" Type="nvarchar" MaxLength="50" />
+          <Property Name="AlertName" Type="nvarchar(max)" />
+          <Property Name="AlertDescription" Type="nvarchar(max)" />
+          <Property Name="Severity" Type="int" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="Category" Type="nchar" MaxLength="30" />
+          <Property Name="RaisedDateTime" Type="datetime" />
+          <Property Name="RepeatCount" Type="int" />
+          <Property Name="DWLastModifiedDateTime" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'Alerts.dbo.ResolutionTable' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ResolutionTable">
+          <Property Name="AlertGuid" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResolutionState" Type="int" />
+          <Property Name="DWCreatedDateTime" Type="datetime" />
+        </EntityType>-->
+  <EntityContainer Name="AlertsModelStoreContainer" />
+</Schema>

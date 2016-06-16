@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlertsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AlertDetail">
+    <Key>
+      <PropertyRef Name="AlertGuid" />
+    </Key>
+    <Property Name="AlertGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AlertName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AlertDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Severity" Type="Int32" />
+    <Property Name="Priority" Type="Int32" />
+    <Property Name="Category" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="RaisedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="RepeatCount" Type="Int32" />
+    <Property Name="DWLastModifiedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ResolutionTable">
+    <Key>
+      <PropertyRef Name="AlertGuid" />
+    </Key>
+    <Property Name="AlertGuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ResolutionState" Type="Int32" />
+    <Property Name="DWCreatedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="AlertsEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AlertDetails" EntityType="Self.AlertDetail" />
+    <EntitySet Name="ResolutionTables" EntityType="Self.ResolutionTable" />
+  </EntityContainer>
+</Schema>

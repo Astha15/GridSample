@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="myGrid">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <script src="js/app.js"></script>
+    <script src="js/GridController.js"></script>
+</head>
+<body>
+    
+    <div ng-controller="GridController">
+        <select ng-model="searchparam.Severity">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Alert</th>
+                    <th>Description</th>
+                    <th>Severity</th>
+                    <th>Priority</th>
+                    <th>Category</th>
+                    <th>Raised Date Time</th>
+                    <th>Repeat Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="alert in Alerts | filter : searchparam.Severity">
+                    <td>{{alert.AlertName}}</td>
+                    <td>{{alert.AlertDescription}}</td>
+                    <td>{{alert.Severity}}</td>
+                    <td>{{alert.Priority}}</td>
+                    <td>{{alert.Category}}</td>
+                    <td>{{alert.RaisedDateTime}}</td>
+                    <td>{{alert.RepeatCount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+
+    <!-- jQuery first, then Bootstrap JS. -->
+    
+</body>
+</html>

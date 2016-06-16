@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AlertsModelStoreContainer" CdmEntityContainer="AlertsEntities4">
+    <EntitySetMapping Name="AlertDetails">
+      <EntityTypeMapping TypeName="AlertsModel.AlertDetail">
+        <MappingFragment StoreEntitySet="AlertDetail">
+          <ScalarProperty Name="AlertGuid" ColumnName="AlertGuid" />
+          <ScalarProperty Name="AlertName" ColumnName="AlertName" />
+          <ScalarProperty Name="AlertDescription" ColumnName="AlertDescription" />
+          <ScalarProperty Name="Severity" ColumnName="Severity" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="RaisedDateTime" ColumnName="RaisedDateTime" />
+          <ScalarProperty Name="RepeatCount" ColumnName="RepeatCount" />
+          <ScalarProperty Name="DWLastModifiedDateTime" ColumnName="DWLastModifiedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResolutionTables">
+      <EntityTypeMapping TypeName="AlertsModel.ResolutionTable">
+        <MappingFragment StoreEntitySet="ResolutionTable">
+          <ScalarProperty Name="AlertGuid" ColumnName="AlertGuid" />
+          <ScalarProperty Name="ResolutionState" ColumnName="ResolutionState" />
+          <ScalarProperty Name="DWCreatedDateTime" ColumnName="DWCreatedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
