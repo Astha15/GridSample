@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using GridSample.Controllers;
 using GridSample.Models;
+using System.Web.Script.Serialization;
 
 namespace GridSample.Controllers
 {
@@ -64,6 +65,16 @@ namespace GridSample.Controllers
                        });
             return new JsonResult { Data = res, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             
+        }
+
+        [HttpPost]
+        public bool SendMail(string recipient)
+        {
+            var result = GetResult();
+            string body = new JavaScriptSerializer().Serialize(result.Data);
+            Mailing mail = new Mailing("emailID", "password");
+            var res = mail.SendMail(recipient, body);
+            return res;
         }
     }
 }

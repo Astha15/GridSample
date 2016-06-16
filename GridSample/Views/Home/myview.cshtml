@@ -6,12 +6,25 @@
 @section scripts{
     @Scripts.Render("~/js/app.js")
     @Scripts.Render("~/js/GridController.js")
+    @Scripts.Render("~/js/PopupController.js")
 }
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">  
 <div ng-app="myGrid">
     <div ng-controller="GridController">
         {{severityValues(Alerts)}}
+
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                    <input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchFish">
+
+                </div>
+            </div>
+        </form>
+
         <table class="table">
             <thead>
                 <tr>
@@ -47,6 +60,8 @@
                 </tr>
             </tbody>
         </table>
+
+        <input type="button" value="Send as Email" ng-click="SendMailClick()" />
     </div>
 
 </div>
