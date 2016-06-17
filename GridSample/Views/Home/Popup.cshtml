@@ -1,17 +1,23 @@
 ﻿@{
+    ViewBag.Title = "PopupView";
     Layout = null;
 }
+@section scripts{
+    @Scripts.Render("~/js/app.js")
+    @Scripts.Render("~/js/PopupController.js")
+}
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
+<div ng-app="myGrid">
     <div>
-    
+        <div class="modal-header">
+            <h3 class="modal-title">Email ID</h3>
+        </div>
+        <div class="modal-body" ng-model="body">
+            Please enter a valid email ID :
+            <input type="email" name="emailID" ng-model="emailID" />
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="close()">Cancel</button>
+        </div>
     </div>
-</body>
-</html>
+</div>

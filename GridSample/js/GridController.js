@@ -1,4 +1,4 @@
-﻿app.controller("GridController", function ($scope, DataService) {
+﻿app.controller("GridController", function ($scope, $uibModal, DataService) {
     DataService.GetResult().then(function (d) {
         //console.log(d);
         $scope.Alerts = d.data;
@@ -20,8 +20,21 @@
     };
     $scope.sortType = 'Priority';
     $scope.sortReverse = false;
+
+    $scope.SendMailClick = function () {
+        console.log('opening pop up');
+        var uibModalInstance = $uibModal.open({
+            templateUrl: 'Home/Popup',
+            controller: 'PopupController',
+           
+        });
+        uibModalInstance.result.then(function (data) {
+            console.log(data);
+        });
+    }
 })
 .factory('DataService', function($http){
+
     var fac = {};
     fac.GetResult = function(){
         return $http.get('/Data/GetResult');

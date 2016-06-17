@@ -1,1 +1,1 @@
-﻿var app = angular.module('myGrid', []);
+﻿var app = angular.module('myGrid', ['ui.bootstrap']);

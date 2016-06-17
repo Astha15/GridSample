@@ -15,5 +15,12 @@ namespace GridSample.Controllers
             //return new FilePathResult("Views\\Home\\Grid.html", "text/html");
             return View("MyView");
         }
+        public ActionResult Popup()
+        {
+            ViewBag.Title = "Home Page";
+
+            //return new FilePathResult("Views\\Home\\Grid.html", "text/html");
+            return View("Popup");
+        }
     }
 }
