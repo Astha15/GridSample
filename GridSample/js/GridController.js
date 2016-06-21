@@ -18,13 +18,20 @@
         console.log(unique);
         return unique;
     };
+
+    $scope.getDate = function (date1) {
+        var regex = /-?\d+/;
+        var dateTicks = regex.exec(date1);
+        return parseInt(dateTicks);
+    };
+
     $scope.sortType = 'Priority';
     $scope.sortReverse = false;
 
     $scope.SendMailClick = function () {
         console.log('opening pop up');
         var uibModalInstance = $uibModal.open({
-            templateUrl: 'Home/Popup',
+            templateUrl: '/Home/Popup',
             controller: 'PopupController',
            
         });

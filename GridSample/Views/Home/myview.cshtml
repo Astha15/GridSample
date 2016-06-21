@@ -12,9 +12,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">  
 <div ng-app="myGrid">
     <div ng-controller="GridController">
-        {{severityValues(Alerts)}}
+       
 
-        <form>
+        @*<form>
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-search"></i></div>
@@ -23,7 +23,7 @@
 
                 </div>
             </div>
-        </form>
+        </form>*@
 
         <table class="table">
             <thead>
@@ -35,7 +35,10 @@
                             <span ng-show="sortType == 'Severity'" class="fa fa-caret-down"></span>
                         </a>          
                         
-                        <select name="Severity" title="Severity" ng-options="value for value in severityValues(Alerts,'Severity')" ng-model="searchparam.Severity"></select>
+                        <select name="Severity" title="Severity" ng-options="value for value in severityValues(Alerts,'Severity')" ng-model="searchparam.Severity">
+                            <option value="">All</option>
+                        </select>
+                        
                     </th>
                    
                     <th>
@@ -49,13 +52,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="alert in Alerts| orderBy:sortType:sortReverse | filter : searchparam">
+                <tr ng-repeat="alert in Alerts| orderBy:sortType:sortReverse | filter : (!!searchparam.Severity || undefined) && searchparam">
                     <td>{{alert.AlertName}}</td>
                     <td>{{alert.AlertDescription}}</td>
                     <td>{{alert.Severity}}</td>
                     <td>{{alert.Priority}}</td>
                     <td>{{alert.Category}}</td>
-                    <td>{{alert.RaisedDateTime}}</td>
+                    <td>{{getDate(alert.RaisedDateTime) | date:'medium'}}</td>
                     <td>{{alert.RepeatCount}}</td>
                 </tr>
             </tbody>

@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using GridSample.Controllers;
 using GridSample.Models;
 using System.Web.Script.Serialization;
-
 namespace GridSample.Controllers
 {
     public class DataController : Controller
@@ -72,7 +71,7 @@ namespace GridSample.Controllers
         {
             var result = GetResult();
             string body = new JavaScriptSerializer().Serialize(result.Data);
-            Mailing mail = new Mailing("emailID", "password");
+            Mailing mail = new Mailing("username", "password");
             var res = mail.SendMail(recipient, body);
             return res;
         }
